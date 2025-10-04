@@ -1,14 +1,21 @@
-[![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/se-edu/addressbook-level3/actions)
+[![pages-build-deployment](https://github.com/AY2526S1-CS2103T-T09-2/tp/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/AY2526S1-CS2103T-T09-2/tp/actions/workflows/pages/pages-build-deployment)
 
 ![Ui](docs/images/Ui.png)
 
-* This is **a sample project for Software Engineering (SE) students**.<br>
-  Example usages:
-  * as a starting point of a course project (as opposed to writing everything from scratch)
-  * as a case study
-* The project simulates an ongoing software project for a desktop application (called _AddressBook_) used for managing contact details.
-  * It is **written in OOP fashion**. It provides a **reasonably well-written** code base **bigger** (around 6 KLoC) than what students usually write in beginner-level SE modules, without being overwhelmingly big.
-  * It comes with a **reasonable level of user and developer documentation**.
-* It is named `AddressBook Level 3` (`AB3` for short) because it was initially created as a part of a series of `AddressBook` projects (`Level 1`, `Level 2`, `Level 3` ...).
-* For the detailed documentation of this project, see the **[Address Book Product Website](https://se-education.org/addressbook-level3)**.
-* This project is a **part of the se-education.org** initiative. If you would like to contribute code to this project, see [se-education.org](https://se-education.org/#contributing-to-se-edu) for more info.
+
+* This project is **based on the [AddressBook-Level3](https://se-education.org/addressbook-level3)** project created by the [SE-EDU initiative](https://se-education.org).  
+  It extends the original design into a **specialized CLI-based application** built for **NUS CCA leaders** to manage **member information** and **event information** efficiently.
+
+* **`ComClubConnect`** is developed as part of a **Software Engineering (SE) course project**, serving both as a **practical implementation** and a **learning tool**.<br>
+  **Example usages:**
+    * as a **starting point** for a course project focusing on real-world **CCA management use cases**
+    * as a **reference case study** for understanding **user-centered design**, **feature scoping**, and **software documentation practices**
+    * as a **training project** to practice **object-oriented programming**, **command-line UI design**, and **feature validation**
+
+* The project simulates an **ongoing software system** designed for **desktop use**, aimed at simplifying **member management** and **event tracking** for CCAs in NUS.
+    * It is **implemented using Object-Oriented Programming (OOP) principles**, providing a **clear and maintainable architecture**.
+    * The code base is **adapted to meet CCA-specific needs** such as **member roles**, **attendance records**, and **event listings**, while keeping complexity **manageable for student developers**.
+    * It includes **comprehensive documentation**, **user stories**, and **meeting logs**, reflecting the **iterative and collaborative nature** of software engineering projects.
+    * For the detailed documentation of this project, see **[ComClubConnect Website](https://ay2526s1-cs2103t-t09-2.github.io/tp/)**.
+
+
