@@ -59,9 +59,9 @@ public class AddCommandParser implements Parser<AddCommand> {
 
         String commandBreakdown = argsParts[1];
         if (isMemberCommand) {
-            return checkMember(commandBreakdown);
+            return checkAddMember(commandBreakdown);
         } else {
-            return checkEvent(commandBreakdown);
+            return checkAddEvent(commandBreakdown);
         }
 
     }
@@ -71,7 +71,7 @@ public class AddCommandParser implements Parser<AddCommand> {
      * and returns an AddMemberCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public AddMemberCommand checkMember(String args) throws ParseException {
+    public AddMemberCommand checkAddMember(String args) throws ParseException {
         ArgumentMultimap argMultimap =
             ArgumentTokenizer.tokenize(" " + args,
                 PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
@@ -98,7 +98,7 @@ public class AddCommandParser implements Parser<AddCommand> {
      * and returns an AddEventCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public AddEventCommand checkEvent(String args) throws ParseException {
+    public AddEventCommand checkAddEvent(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(" " + args, PREFIX_NAME, PREFIX_DATE, PREFIX_LOCATION);
 

@@ -43,7 +43,7 @@ public class EventName {
             return false;
         }
         EventName otherName = (EventName) other;
-        return fullName.equals(otherName.fullName);
+        return fullName.equalsIgnoreCase(otherName.fullName);
     }
 
     @Override

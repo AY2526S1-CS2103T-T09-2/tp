@@ -44,7 +44,7 @@ public class Venue {
             return false;
         }
         Venue otherVenue = (Venue) other;
-        return value.equals(otherVenue.value);
+        return value.equalsIgnoreCase(otherVenue.value);
     }
 
     @Override
