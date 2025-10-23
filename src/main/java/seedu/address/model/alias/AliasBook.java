@@ -1,6 +1,7 @@
 package seedu.address.model.alias;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -80,6 +81,17 @@ public class AliasBook {
      */
     public void clear() { // Method for future use
         aliasMap.clear();
+    }
+
+    /**
+     * Converts the Alias Book into a list of aliases
+     * @return List of type Alias
+     */
+    public List<Alias> getAliasList() {
+        return aliasMap.entrySet()
+                .stream()
+                .map(entry -> new Alias(entry.getValue(), entry.getKey()))
+                .toList();
     }
 
     /**
