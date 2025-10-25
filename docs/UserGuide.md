@@ -162,22 +162,27 @@ Prefix reference used in commands:
 
 
 
-
 ### Viewing Help — `help`
-
 
 Opens the Help window.
 
-
 Format: `help`
-
-
-<div markdown="span" class="alert alert-success">✅ <strong>Tip:</strong> Press <code>F1</code> or use the Help menu to open the Help window quickly.</div>
-<div markdown="span" class="alert alert-warning">⚠️ <strong>Caution:</strong> If the Help window is minimized, running <code>help</code> again will not open a new window. Restore the minimized window instead.</div>
-
 
 ![help message](images/helpMessage.png)
 
+#### Guided Tour — `guidedtour`
+
+Opens the Guided Tour window, which provides an overview of the key components of the Address Book interface.
+
+Format: `guidedtour`
+
+![Guided Tour Overview](images/annotatedGuidedTour.png)
+
+The Guided Tour walks you through major areas of the application — such as the **Menu Bar**, **Command Box**, **Result Display**, **Member/Event List Display**, and **Status Bar** — with color-coded highlights and brief explanations to help you get familiar with the interface.
+
+
+<div markdown="span" class="alert alert-success">✅ <strong>Tip: </strong> <code>F1</code> or use the Help menu to open the Help window quickly.</div>
+<div markdown="span" class="alert alert-warning">⚠️ <strong>Caution:</strong> If the Help window is minimized, running <code>help</code> again will not open a new window. Restore the minimized window instead.</div>
 
 
 
@@ -539,21 +544,21 @@ Problem: “Could not save data due to insufficient permissions …”
 
 
 
-
 ## Command Summary
 
+| Action | Format Examples                                                                                                                                                                     |
+|---------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **add** | **Member:** `add member n/Alex Tan p/91234567 e/alextan@u.nus.edu y/2 r/Logistics`<br><hr style="margin:4px 0;">**Event:** `add event n/Welcome Tea d/2025-09-01T18:00 l/COM1-01-02` |
+| **edit** | **Member:** `edit member 2 e/alextan@u.nus.edu p/98765432`<br><hr style="margin:4px 0;">**Event:** `edit event 1 d/2025-10-05T19:00 l/COM3-01-12`                                   |
+| **delete** | **Member:** `delete member 3`<br><hr style="margin:4px 0;">**Event:** `delete event 1`                                                                                              |
+| **list** | **Member:** `list member`<br><hr style="margin:4px 0;">**Event:** `list event`                                                                                                      |
+| **find** | **Member:** `find member n/Alex`, `find member y/1`<br><hr style="margin:4px 0;">**Event:** `find event n/Welcome`, `find event l/COM1`                                             |
+| **clear** | **Member:** `clear member`<br><hr style="margin:4px 0;">**Event:** `clear event`                                                                                                    |
+| **alias** | `alias delete rm`, `alias list ls`                                                                                                                                       |
+| **help** | `help`                                                                                                                                                                              |
+| **exit** | `exit`                                                                                                                                                                              |
 
-Action | Member Example | Event Example
--------|-----------------|--------------
-add | `add member n/Alex Tan p/91234567 e/alextan@u.nus.edu y/2 r/Logistics` | `add event n/Welcome Tea d/2025-09-01T18:00 l/COM1-01-02`
-edit | `edit member 2 e/alextan@u.nus.edu p/98765432` | `edit event 1 d/2025-10-05T19:00 l/COM3-01-12`
-delete | `delete member 3` | `delete event 1`
-list | `list member` | `list event`
-find | `find member n/Alex` or `find member y/1` | `find event n/Welcome` or `find event l/COM1`
-clear | `clear member` | `clear event`
-alias | `alias delete rm` | `alias list ls`
-help | `help` | `help`
-exit | `exit` | `exit`
+
 
 
 [Back to top](#comclubconnect-user-guide)
