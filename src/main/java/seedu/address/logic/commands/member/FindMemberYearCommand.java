@@ -11,7 +11,7 @@ import seedu.address.model.person.YearContainsKeywordsPredicate;
 
 /**
  * Finds and lists all persons in address book whose year contains any of the argument keywords.
- * Keyword matching is case insensitive.
+ * Keyword matching is case-insensitive.
  */
 public class FindMemberYearCommand extends FindCommand {
 
@@ -29,12 +29,9 @@ public class FindMemberYearCommand extends FindCommand {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredPersonList(predicate);
-        return new CommandResult(
-                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()),
-                false,
-                false,
-                true,
-                false);
+        return CommandResult.showMembers(String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW,
+                model.getFilteredPersonList().size()));
+
     }
 
     @Override
@@ -44,7 +41,7 @@ public class FindMemberYearCommand extends FindCommand {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof FindMemberNameCommand)) {
+        if (!(other instanceof FindMemberYearCommand)) {
             return false;
         }
 

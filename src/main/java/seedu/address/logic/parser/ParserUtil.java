@@ -27,6 +27,26 @@ public class ParserUtil {
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
 
     /**
+     * Checks if the string is equal to member and it is not case-sensitive
+     *
+     * @param type Input string
+     * @return True if it is equal to "member", otherwise false
+     */
+    public static boolean isMember(String type) {
+        return type.equalsIgnoreCase("member");
+    }
+
+    /**
+     * Checks if the string is equal to event and it is not case-sensitive
+     *
+     * @param type Input string
+     * @return True if it is equal to "event", otherwise false
+     */
+    public static boolean isEvent(String type) {
+        return type.equalsIgnoreCase("event");
+    }
+
+    /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).

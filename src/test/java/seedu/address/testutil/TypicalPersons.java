@@ -33,15 +33,16 @@ public class TypicalPersons {
             .withEmail("johnd@u.nus.edu").withPhone("98765432")
             .withTags("owesMoney", "friends").build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
-            .withEmail("heinz@u.nus.edu").withYear("3").build();
+            .withEmail("heinz@u.nus.edu").withYear("3")
+            .withTags("member").build();
     public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier").withPhone("87652533")
             .withEmail("cornelia@u.nus.edu").withYear("4").withTags("friends").build();
     public static final Person ELLE = new PersonBuilder().withName("Elle Meyer").withPhone("94822244")
-            .withEmail("werner@u.nus.edu").withYear("1").build();
+            .withEmail("werner@u.nus.edu").withTags("leader").withYear("1").build();
     public static final Person FIONA = new PersonBuilder().withName("Fiona Kunz").withPhone("94824274")
-            .withEmail("lydia@u.nus.edu").withYear("2").build();
+            .withEmail("lydia@u.nus.edu").withTags("president").withYear("2").build();
     public static final Person GEORGE = new PersonBuilder().withName("George Best").withPhone("94824424")
-            .withEmail("anna@u.nus.edu").withYear("3").build();
+            .withEmail("anna@u.nus.edu").withYear("3").withTags("captain").build();
 
     // Manually added
     public static final Person HOON = new PersonBuilder().withName("Hoon Meier").withPhone("84824244")

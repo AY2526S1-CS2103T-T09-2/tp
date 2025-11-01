@@ -28,23 +28,19 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
         }
 
-        // Type indicates whether to delete member or event
-        String type = argsParts[0];
         String indexToDelete = argsParts[1];
-        boolean isInvalidType = !type.equalsIgnoreCase("member") && !type.equalsIgnoreCase("event");
-
-        if (isInvalidType) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_TYPE, DeleteCommand.MESSAGE_USAGE));
-        }
-
+        Index index;
         try {
-            Index index = ParserUtil.parseIndex(indexToDelete);
-            return matchType(type, index);
+            index = ParserUtil.parseIndex(indexToDelete);
         } catch (ParseException pe) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE), pe);
         }
+
+        // Type indicates whether to delete member or event
+        String type = argsParts[0];
+        return matchType(type, index);
+
     }
 
     /**
@@ -53,13 +49,13 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
      * @param index Position to be removed
      * @return DeleteMemberCommand or DeleteEventCommand
      */
-    public DeleteCommand matchType(String type, Index index) {
-        if (type.equalsIgnoreCase("member")) {
+    public DeleteCommand matchType(String type, Index index) throws ParseException {
+        if (ParserUtil.isMember(type)) {
             return new DeleteMemberCommand(index);
-        } else if (type.equalsIgnoreCase("event")) {
+        } else if (ParserUtil.isEvent(type)) {
             return new DeleteEventCommand(index);
         } else {
-            return null;
+            throw new ParseException(String.format(MESSAGE_INVALID_TYPE, DeleteCommand.MESSAGE_USAGE));
         }
     }
 
