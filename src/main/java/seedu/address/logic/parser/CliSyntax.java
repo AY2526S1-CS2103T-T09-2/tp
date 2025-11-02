@@ -10,7 +10,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_PHONE = new Prefix("p/");
     public static final Prefix PREFIX_EMAIL = new Prefix("e/");
     public static final Prefix PREFIX_YEAR = new Prefix("y/");
-    public static final Prefix PREFIX_TAG = new Prefix("r/");
+    public static final Prefix PREFIX_ROLE = new Prefix("r/");
     public static final Prefix PREFIX_DATE = new Prefix("d/");
     public static final Prefix PREFIX_LOCATION = new Prefix("v/");
     public static final Prefix PREFIX_MEMBER = new Prefix("m/");
@@ -27,7 +27,7 @@ public class CliSyntax {
         return text.contains(blank + PREFIX_YEAR.getPrefix())
                 || text.contains(blank + PREFIX_EMAIL.getPrefix())
                 || text.contains(blank + PREFIX_PHONE.getPrefix())
-                || text.contains(blank + PREFIX_TAG.getPrefix())
+                || text.contains(blank + PREFIX_ROLE.getPrefix())
                 || text.contains(blank + PREFIX_NAME.getPrefix());
     }
 

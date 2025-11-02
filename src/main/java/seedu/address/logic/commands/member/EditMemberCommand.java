@@ -22,7 +22,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.person.Role;
 import seedu.address.model.person.Year;
 
 /**
@@ -47,7 +47,7 @@ public class EditMemberCommand extends EditCommand {
         private Phone phone;
         private Email email;
         private Year year;
-        private Set<Tag> tags;
+        private Role role;
 
         public EditMemberDescriptor() {}
 
@@ -60,7 +60,7 @@ public class EditMemberCommand extends EditCommand {
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setYear(toCopy.year);
-            setTags(toCopy.tags);
+            setRole(toCopy.role);
         }
 
         /**
@@ -68,7 +68,7 @@ public class EditMemberCommand extends EditCommand {
          */
         @Override
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, year, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, year, role);
         }
 
         public void setName(Name name) {
@@ -103,24 +103,32 @@ public class EditMemberCommand extends EditCommand {
             return Optional.ofNullable(year);
         }
 
-        /**
-         * Sets {@code tags} to this object's {@code tags}.
-         * A defensive copy of {@code tags} is used internally.
-         */
-        @Override
-        public void setTags(Set<Tag> tags) {
-            this.tags = (tags != null) ? new HashSet<>(tags) : null;
+        public void setRole(Role role) {
+            this.role = role;
         }
 
-        /**
-         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
-         * if modification is attempted.
-         * Returns {@code Optional#empty()} if {@code tags} is null.
-         */
-        @Override
-        public Optional<Set<Tag>> getTags() {
-            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        public Optional<Role> getRole() {
+            return Optional.ofNullable(role);
         }
+
+//        /**
+//         * Sets {@code tags} to this object's {@code tags}.
+//         * A defensive copy of {@code tags} is used internally.
+//         */
+//        @Override
+//        public void setTags(Set<Tag> tags) {
+//            this.tags = (tags != null) ? new HashSet<>(tags) : null;
+//        }
+//
+//        /**
+//         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
+//         * if modification is attempted.
+//         * Returns {@code Optional#empty()} if {@code tags} is null.
+//         */
+//        @Override
+//        public Optional<Set<Tag>> getTags() {
+//            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+//        }
 
         @Override
         public boolean equals(Object other) {
@@ -138,7 +146,7 @@ public class EditMemberCommand extends EditCommand {
                     && Objects.equals(phone, otherEditPersonDescriptor.phone)
                     && Objects.equals(email, otherEditPersonDescriptor.email)
                     && Objects.equals(year, otherEditPersonDescriptor.year)
-                    && Objects.equals(tags, otherEditPersonDescriptor.tags);
+                    && Objects.equals(role, otherEditPersonDescriptor.role);
         }
 
         @Override
@@ -148,7 +156,7 @@ public class EditMemberCommand extends EditCommand {
                     .add("phone", phone)
                     .add("email", email)
                     .add("year", year)
-                    .add("tags", tags)
+                    .add("role", role)
                     .toString();
         }
     }
@@ -200,10 +208,11 @@ public class EditMemberCommand extends EditCommand {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Year updatedYear = editPersonDescriptor.getYear().orElse(personToEdit.getYear());
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        Role updatedRole = editPersonDescriptor.getRole().orElse(personToEdit.getRole());
+//        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         int attendanceCount = personToEdit.getAttendanceCount(); // Preserve attendance count
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedYear, updatedTags, attendanceCount);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedYear, updatedRole, attendanceCount);
     }
 
     @Override

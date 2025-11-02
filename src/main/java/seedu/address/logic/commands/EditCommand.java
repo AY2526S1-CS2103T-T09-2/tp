@@ -5,7 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_YEAR;
 
 import java.util.Collections;
@@ -34,7 +34,7 @@ public abstract class EditCommand extends Command {
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_YEAR + "YEAR(1-4)] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_ROLE + "TAG]...\n"
             + "Examples:\n"
             + "  " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
@@ -54,7 +54,7 @@ public abstract class EditCommand extends Command {
      */
 
     public abstract static class EditDescriptor {
-        private Set<Tag> tags;
+//        private Set<Tag> tags;
 
         public EditDescriptor() {}
 
@@ -63,43 +63,43 @@ public abstract class EditCommand extends Command {
          */
         public abstract boolean isAnyFieldEdited();
 
-        /**
-         * Sets {@code tags} to this object's {@code tags}.
-         * A defensive copy of {@code tags} is used internally.
-         */
-        public void setTags(Set<Tag> tags) {
-            this.tags = (tags != null) ? new HashSet<>(tags) : null;
-        }
-
-        /**
-         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
-         * if modification is attempted.
-         * Returns {@code Optional#empty()} if {@code tags} is null.
-         */
-        public Optional<Set<Tag>> getTags() {
-            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
-        }
-
-        @Override
-        public boolean equals(Object other) {
-            if (other == this) {
-                return true;
-            }
-
-            // instanceof handles nulls
-            if (!(other instanceof EditDescriptor)) {
-                return false;
-            }
-
-            EditDescriptor otherEditDescriptor = (EditDescriptor) other;
-            return Objects.equals(tags, otherEditDescriptor.tags);
-        }
-
-        @Override
-        public String toString() {
-            return new ToStringBuilder(this)
-                    .add("tags", tags)
-                    .toString();
-        }
+//        /**
+//         * Sets {@code tags} to this object's {@code tags}.
+//         * A defensive copy of {@code tags} is used internally.
+//         */
+//        public void setTags(Set<Tag> tags) {
+//            this.tags = (tags != null) ? new HashSet<>(tags) : null;
+//        }
+//
+//        /**
+//         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
+//         * if modification is attempted.
+//         * Returns {@code Optional#empty()} if {@code tags} is null.
+//         */
+//        public Optional<Set<Tag>> getTags() {
+//            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+//        }
+//
+//        @Override
+//        public boolean equals(Object other) {
+//            if (other == this) {
+//                return true;
+//            }
+//
+//            // instanceof handles nulls
+//            if (!(other instanceof EditDescriptor)) {
+//                return false;
+//            }
+//
+//            EditDescriptor otherEditDescriptor = (EditDescriptor) other;
+//            return Objects.equals(tags, otherEditDescriptor.tags);
+//        }
+//
+//        @Override
+//        public String toString() {
+//            return new ToStringBuilder(this)
+//                    .add("tags", tags)
+//                    .toString();
+//        }
     }
 }

@@ -15,6 +15,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Role;
 import seedu.address.model.person.Year;
 import seedu.address.model.tag.Tag;
 
@@ -31,7 +32,8 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
     private final String year;
-    private final List<JsonAdaptedTag> tags = new ArrayList<>();
+    private final String role;
+//    private final List<JsonAdaptedTag> tags = new ArrayList<>();
     private final Integer attendanceCount;
 
     /**
@@ -40,14 +42,12 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("year") String year,
-            @JsonProperty("tags") List<JsonAdaptedTag> tags, @JsonProperty("attendanceCount") Integer attendanceCount) {
+            @JsonProperty("role") String role, @JsonProperty("attendanceCount") Integer attendanceCount) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.year = year;
-        if (tags != null) {
-            this.tags.addAll(tags);
-        }
+        this.role = role;
         this.attendanceCount = attendanceCount;
     }
 
@@ -59,9 +59,7 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         year = source.getYear().value;
-        tags.addAll(source.getTags().stream()
-                .map(JsonAdaptedTag::new)
-                .collect(Collectors.toList()));
+        role = source.getRole().roleName;
         attendanceCount = source.getAttendanceCount();
     }
 
@@ -71,10 +69,10 @@ class JsonAdaptedPerson {
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
     public Person toModelType() throws IllegalValueException {
-        final List<Tag> personTags = new ArrayList<>();
-        for (JsonAdaptedTag tag : tags) {
-            personTags.add(tag.toModelType());
-        }
+//        final List<Tag> personTags = new ArrayList<>();
+//        for (JsonAdaptedTag tag : tags) {
+//            personTags.add(tag.toModelType());
+//        }
 
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
@@ -129,7 +127,15 @@ class JsonAdaptedPerson {
         }
         final Year modelYear = new Year(year);
 
-        final Set<Tag> modelTags = new HashSet<>(personTags);
+        if (role == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Role.class.getSimpleName()));
+        }
+        if (!Role.isValidRoleName(role)) {
+            throw new IllegalValueException(Role.MESSAGE_CONSTRAINTS);
+        }
+        final Role modelRole = new Role(role);
+
+//        final Set<Tag> modelTags = new HashSet<>(personTags);
 
         if (attendanceCount != null && attendanceCount < 0) {
             throw new IllegalValueException(MESSAGE_INVALID_ATTENDANCE_COUNT);
@@ -137,7 +143,7 @@ class JsonAdaptedPerson {
 
         int modelAttendanceCount = (attendanceCount != null) ? attendanceCount : 0;
 
-        return new Person(modelName, modelPhone, modelEmail, modelYear, modelTags, modelAttendanceCount);
+        return new Person(modelName, modelPhone, modelEmail, modelYear, modelRole, modelAttendanceCount);
     }
 
 }

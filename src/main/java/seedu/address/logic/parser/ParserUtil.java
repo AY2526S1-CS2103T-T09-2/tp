@@ -16,6 +16,7 @@ import seedu.address.model.event.Venue;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Role;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.person.Year;
 
@@ -149,13 +150,13 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code tag} is invalid.
      */
-    public static Tag parseTag(String tag) throws ParseException {
-        requireNonNull(tag);
-        String trimmedTag = tag.trim();
-        if (!Tag.isValidTagName(trimmedTag)) {
+    public static Role parseRole(String role) throws ParseException {
+        requireNonNull(role);
+        String normalizedRoleName = Role.normalizeWhitespace(role);
+        if (!Role.isValidRoleName(normalizedRoleName)) {
             throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
         }
-        return new Tag(trimmedTag);
+        return new Role(role);
     }
 
     /**
@@ -203,17 +204,17 @@ public class ParserUtil {
         return new Venue(trimmedVenue);
     }
 
-    /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
-     */
-    public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
-        requireNonNull(tags);
-        final Set<Tag> tagSet = new HashSet<>();
-        for (String tagName : tags) {
-            tagSet.add(parseTag(tagName));
-        }
-        return tagSet;
-    }
+//    /**
+//     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
+//     */
+//    public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
+//        requireNonNull(tags);
+//        final Set<Tag> tagSet = new HashSet<>();
+//        for (String tagName : tags) {
+//            tagSet.add(parseTag(tagName));
+//        }
+//        return tagSet;
+//    }
 
     /**
      * Parses a {@code String commandWord} and {@code String aliasWord} into a {@code Alias}.

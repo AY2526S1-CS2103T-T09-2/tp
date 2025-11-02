@@ -12,6 +12,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Role;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.person.Year;
 
@@ -22,23 +23,17 @@ public class SampleDataUtil {
     public static Person[] getSamplePersons() {
         return new Person[] {
             new Person(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@u.nus.edu"),
-                new Year("1"),
-                getTagSet("VicePresident")),
+                new Year("1"), new Role("VicePresident")),
             new Person(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@u.nus.edu"),
-                new Year("2"),
-                getTagSet("OperationsHead", "Treasurer")),
+                new Year("2"), new Role("Treasurer")),
             new Person(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@u.nus.edu"),
-                new Year("3"),
-                getTagSet("MarketingHead")),
+                new Year("3"), new Role("Member")),
             new Person(new Name("David Li"), new Phone("91031282"), new Email("lidavid@u.nus.edu"),
-                new Year("4"),
-                getTagSet("President")),
+                new Year("4"), new Role("Member")),
             new Person(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@u.nus.edu"),
-                new Year("1"),
-                getTagSet("Member")),
+                new Year("1"), new Role("Member")),
             new Person(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@u.nus.edu"),
-                new Year("2"),
-                getTagSet("Secretriat"))
+                new Year("2"), new Role("Member"))
         };
     }
 

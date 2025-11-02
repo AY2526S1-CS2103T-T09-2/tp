@@ -55,8 +55,9 @@ public class PersonCard extends UiPart<Region> {
         year.setText("Year " + person.getYear().value);
         email.setText(person.getEmail().value);
         attendance.setText("Attendance: " + person.getAttendanceCount());
-        person.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        tags.getChildren().add(new Label(person.getRole().roleName));
+//        person.getTags().stream()
+//                .sorted(Comparator.comparing(tag -> tag.tagName))
+//                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
 }
