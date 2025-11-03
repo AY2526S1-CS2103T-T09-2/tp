@@ -18,12 +18,12 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.YearContainsKeywordsPredicate;
+import seedu.address.model.person.RoleContainsKeywordsPredicate;
 
 /**
- * Contains integration tests (interaction with the Model) and unit tests for FindMemberYearCommand.
+ * Contains integration tests (interaction with the Model) and unit tests for FindMemberRoleCommand.
  */
-public class FindMemberYearCommandTest {
+public class FindMemberRoleCommandTest {
 
     private Model model;
     private Model expectedModel;
@@ -36,19 +36,19 @@ public class FindMemberYearCommandTest {
 
     @Test
     public void equals() {
-        YearContainsKeywordsPredicate firstPredicate =
-                new YearContainsKeywordsPredicate(Collections.singletonList("1"));
-        YearContainsKeywordsPredicate secondPredicate =
-                new YearContainsKeywordsPredicate(Collections.singletonList("2"));
+        RoleContainsKeywordsPredicate firstPredicate =
+                new RoleContainsKeywordsPredicate(Collections.singletonList("1"));
+        RoleContainsKeywordsPredicate secondPredicate =
+                new RoleContainsKeywordsPredicate(Collections.singletonList("2"));
 
-        FindMemberYearCommand firstCommand = new FindMemberYearCommand(firstPredicate);
-        FindMemberYearCommand secondCommand = new FindMemberYearCommand(secondPredicate);
+        FindMemberRoleCommand firstCommand = new FindMemberRoleCommand(firstPredicate);
+        FindMemberRoleCommand secondCommand = new FindMemberRoleCommand(secondPredicate);
 
         // same object -> returns true
         assertTrue(firstCommand.equals(firstCommand));
 
         // different object with same predicate -> returns true
-        FindMemberYearCommand copy = new FindMemberYearCommand(firstPredicate);
+        FindMemberRoleCommand copy = new FindMemberRoleCommand(firstPredicate);
         assertTrue(firstCommand.equals(copy));
 
         // different predicate -> returns false
@@ -64,8 +64,8 @@ public class FindMemberYearCommandTest {
     @Test
     public void execute_noKeywords_noPersonFound() {
         String expectedMessage = String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
-        YearContainsKeywordsPredicate predicate = new YearContainsKeywordsPredicate(Collections.emptyList());
-        FindMemberYearCommand command = new FindMemberYearCommand(predicate);
+        RoleContainsKeywordsPredicate predicate = new RoleContainsKeywordsPredicate(Collections.emptyList());
+        FindMemberRoleCommand command = new FindMemberRoleCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
 
         // Execute and check
@@ -76,8 +76,8 @@ public class FindMemberYearCommandTest {
     @Test
     public void execute_multipleKeywords_multiplePersonsFound() {
         // Example: Suppose ALICE, BENSON, DANIEL have "Y1", "Y2", "Y3" respectively in their year
-        YearContainsKeywordsPredicate predicate = new YearContainsKeywordsPredicate(Arrays.asList("1", "3"));
-        FindMemberYearCommand command = new FindMemberYearCommand(predicate);
+        RoleContainsKeywordsPredicate predicate = new RoleContainsKeywordsPredicate(Arrays.asList("1", "3"));
+        FindMemberRoleCommand command = new FindMemberRoleCommand(predicate);
 
         expectedModel.updateFilteredPersonList(predicate);
         String expectedMessage = String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW,
@@ -88,9 +88,9 @@ public class FindMemberYearCommandTest {
 
     @Test
     public void toStringMethod() {
-        YearContainsKeywordsPredicate predicate = new YearContainsKeywordsPredicate(Collections.singletonList("1"));
-        FindMemberYearCommand command = new FindMemberYearCommand(predicate);
-        String expected = "seedu.address.logic.commands.member.FindMemberYearCommand"
+        RoleContainsKeywordsPredicate predicate = new RoleContainsKeywordsPredicate(Collections.singletonList("1"));
+        FindMemberRoleCommand command = new FindMemberRoleCommand(predicate);
+        String expected = "seedu.address.logic.commands.member.FindMemberRoleCommand"
                 + "{predicate=" + predicate + "}";
         assertEquals(expected, command.toString());
     }

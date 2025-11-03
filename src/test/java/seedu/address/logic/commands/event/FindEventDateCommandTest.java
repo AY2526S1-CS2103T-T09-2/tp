@@ -20,30 +20,30 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.alias.AliasBook;
-import seedu.address.model.event.LocationContainsKeywordsPredicate;
+import seedu.address.model.event.DateContainsKeywordsPredicate;
 
 /**
- * Contains integration tests (interaction with the Model) for {@code FindEventLocationCommand}.
+ * Contains integration tests (interaction with the Model) for {@code FindEventDateCommand}.
  */
-public class FindEventLocationCommandTest {
+public class FindEventDateCommandTest {
     private final Model model = new ModelManager(getTypicalAddressBook(), new AliasBook(), new UserPrefs());
     private final Model expectedModel = new ModelManager(getTypicalAddressBook(), new AliasBook(), new UserPrefs());
 
     @Test
     public void equals() {
-        LocationContainsKeywordsPredicate firstPredicate =
-                new LocationContainsKeywordsPredicate(Collections.singletonList("Zoom"));
-        LocationContainsKeywordsPredicate secondPredicate =
-                new LocationContainsKeywordsPredicate(Collections.singletonList("Auditorium"));
+        DateContainsKeywordsPredicate firstPredicate =
+                new DateContainsKeywordsPredicate(Collections.singletonList("Zoom"));
+        DateContainsKeywordsPredicate secondPredicate =
+                new DateContainsKeywordsPredicate(Collections.singletonList("Auditorium"));
 
-        FindEventLocationCommand findFirstCommand = new FindEventLocationCommand(firstPredicate);
-        FindEventLocationCommand findSecondCommand = new FindEventLocationCommand(secondPredicate);
+        FindEventDateCommand findFirstCommand = new FindEventDateCommand(firstPredicate);
+        FindEventDateCommand findSecondCommand = new FindEventDateCommand(secondPredicate);
 
         // same object -> returns true
         assertTrue(findFirstCommand.equals(findFirstCommand));
 
         // same values -> returns true
-        FindEventLocationCommand findFirstCommandCopy = new FindEventLocationCommand(firstPredicate);
+        FindEventDateCommand findFirstCommandCopy = new FindEventDateCommand(firstPredicate);
         assertTrue(findFirstCommand.equals(findFirstCommandCopy));
 
         // different types -> returns false
@@ -59,8 +59,8 @@ public class FindEventLocationCommandTest {
     @Test
     public void execute_zeroKeywords_noEventFound() {
         String expectedMessage = String.format(MESSAGE_EVENTS_LISTED_OVERVIEW, 0);
-        LocationContainsKeywordsPredicate predicate = new LocationContainsKeywordsPredicate(Collections.emptyList());
-        FindEventLocationCommand command = new FindEventLocationCommand(predicate);
+        DateContainsKeywordsPredicate predicate = new DateContainsKeywordsPredicate(Collections.emptyList());
+        FindEventDateCommand command = new FindEventDateCommand(predicate);
         expectedModel.updateFilteredEventList(predicate);
         assertCommandSuccess(command, model, expectedMessage, CommandResult.showEvents(expectedMessage),
                 expectedModel);
@@ -71,8 +71,8 @@ public class FindEventLocationCommandTest {
     public void execute_singleKeyword_singleEventFound() {
         // Only MEETING has "Zoom" as its location
         String expectedMessage = String.format(MESSAGE_EVENTS_LISTED_OVERVIEW, 1);
-        LocationContainsKeywordsPredicate predicate = preparePredicate("Zoom");
-        FindEventLocationCommand command = new FindEventLocationCommand(predicate);
+        DateContainsKeywordsPredicate predicate = preparePredicate("Zoom");
+        FindEventDateCommand command = new FindEventDateCommand(predicate);
         expectedModel.updateFilteredEventList(predicate);
         assertCommandSuccess(command, model, expectedMessage, CommandResult.showEvents(expectedMessage),
                 expectedModel);
@@ -82,8 +82,8 @@ public class FindEventLocationCommandTest {
     @Test
     public void execute_keywordWithWhitespace_singleEventFound() {
         String expectedMessage = String.format(MESSAGE_EVENTS_LISTED_OVERVIEW, 1);
-        LocationContainsKeywordsPredicate predicate = preparePredicate("  Zoom  "); // extra spaces
-        FindEventLocationCommand command = new FindEventLocationCommand(predicate);
+        DateContainsKeywordsPredicate predicate = preparePredicate("  Zoom  "); // extra spaces
+        FindEventDateCommand command = new FindEventDateCommand(predicate);
         expectedModel.updateFilteredEventList(predicate);
         assertCommandSuccess(command, model, expectedMessage, CommandResult.showEvents(expectedMessage),
                 expectedModel);
@@ -93,8 +93,8 @@ public class FindEventLocationCommandTest {
     @Test
     public void execute_keywordDifferentCase_singleEventFound() {
         String expectedMessage = String.format(MESSAGE_EVENTS_LISTED_OVERVIEW, 1);
-        LocationContainsKeywordsPredicate predicate = preparePredicate("zOOM"); // uppercase/lowercase mix
-        FindEventLocationCommand command = new FindEventLocationCommand(predicate);
+        DateContainsKeywordsPredicate predicate = preparePredicate("zOOM"); // uppercase/lowercase mix
+        FindEventDateCommand command = new FindEventDateCommand(predicate);
         expectedModel.updateFilteredEventList(predicate);
         assertCommandSuccess(command, model, expectedMessage, CommandResult.showEvents(expectedMessage),
                 expectedModel);
@@ -104,8 +104,8 @@ public class FindEventLocationCommandTest {
     @Test
     public void execute_duplicateKeywords_singleEventFound() {
         String expectedMessage = String.format(MESSAGE_EVENTS_LISTED_OVERVIEW, 1);
-        LocationContainsKeywordsPredicate predicate = preparePredicate("Zoom Zoom Zoom");
-        FindEventLocationCommand command = new FindEventLocationCommand(predicate);
+        DateContainsKeywordsPredicate predicate = preparePredicate("Zoom Zoom Zoom");
+        FindEventDateCommand command = new FindEventDateCommand(predicate);
         expectedModel.updateFilteredEventList(predicate);
         assertCommandSuccess(command, model, expectedMessage, CommandResult.showEvents(expectedMessage),
                 expectedModel);
@@ -115,8 +115,8 @@ public class FindEventLocationCommandTest {
     @Test
     public void execute_mixedKeywords_someEventsFound() {
         String expectedMessage = String.format(MESSAGE_EVENTS_LISTED_OVERVIEW, 1);
-        LocationContainsKeywordsPredicate predicate = preparePredicate("Zoom InvalidLocation");
-        FindEventLocationCommand command = new FindEventLocationCommand(predicate);
+        DateContainsKeywordsPredicate predicate = preparePredicate("Zoom InvalidLocation");
+        FindEventDateCommand command = new FindEventDateCommand(predicate);
         expectedModel.updateFilteredEventList(predicate);
         assertCommandSuccess(command, model, expectedMessage, CommandResult.showEvents(expectedMessage),
                 expectedModel);
@@ -127,8 +127,8 @@ public class FindEventLocationCommandTest {
     public void execute_multipleKeywords_multipleEventsFound() {
         // "UTown" matches HACKATHON, "Auditorium" matches WORKSHOP
         String expectedMessage = String.format(MESSAGE_EVENTS_LISTED_OVERVIEW, 2);
-        LocationContainsKeywordsPredicate predicate = preparePredicate("UTown Auditorium");
-        FindEventLocationCommand command = new FindEventLocationCommand(predicate);
+        DateContainsKeywordsPredicate predicate = preparePredicate("UTown Auditorium");
+        FindEventDateCommand command = new FindEventDateCommand(predicate);
         expectedModel.updateFilteredEventList(predicate);
         assertCommandSuccess(command, model, expectedMessage, CommandResult.showEvents(expectedMessage),
                 expectedModel);
@@ -138,8 +138,8 @@ public class FindEventLocationCommandTest {
     @Test
     public void execute_keywordMatchingAllEvents_allEventsFound() {
         String expectedMessage = String.format(MESSAGE_EVENTS_LISTED_OVERVIEW, 3);
-        LocationContainsKeywordsPredicate predicate = preparePredicate("Zoom UTown Auditorium");
-        FindEventLocationCommand command = new FindEventLocationCommand(predicate);
+        DateContainsKeywordsPredicate predicate = preparePredicate("Zoom UTown Auditorium");
+        FindEventDateCommand command = new FindEventDateCommand(predicate);
         expectedModel.updateFilteredEventList(predicate);
         assertCommandSuccess(command, model, expectedMessage, CommandResult.showEvents(expectedMessage),
                 expectedModel);
@@ -150,8 +150,8 @@ public class FindEventLocationCommandTest {
     public void execute_keywordNotMatchingCase_noEventFound() {
         // Case-sensitive check (depending on predicate implementation)
         String expectedMessage = String.format(MESSAGE_EVENTS_LISTED_OVERVIEW, 0);
-        LocationContainsKeywordsPredicate predicate = preparePredicate("zoomz");
-        FindEventLocationCommand command = new FindEventLocationCommand(predicate);
+        DateContainsKeywordsPredicate predicate = preparePredicate("zoomz");
+        FindEventDateCommand command = new FindEventDateCommand(predicate);
         expectedModel.updateFilteredEventList(predicate);
         assertCommandSuccess(command, model, expectedMessage, CommandResult.showEvents(expectedMessage),
                 expectedModel);
@@ -161,8 +161,8 @@ public class FindEventLocationCommandTest {
     @Test
     public void execute_keywordWithSpecialCharacters_noEventFound() {
         String expectedMessage = String.format(MESSAGE_EVENTS_LISTED_OVERVIEW, 0);
-        LocationContainsKeywordsPredicate predicate = preparePredicate("@Zoom!");
-        FindEventLocationCommand command = new FindEventLocationCommand(predicate);
+        DateContainsKeywordsPredicate predicate = preparePredicate("@Zoom!");
+        FindEventDateCommand command = new FindEventDateCommand(predicate);
         expectedModel.updateFilteredEventList(predicate);
         assertCommandSuccess(command, model, expectedMessage, CommandResult.showEvents(expectedMessage),
                 expectedModel);
@@ -172,8 +172,8 @@ public class FindEventLocationCommandTest {
     @Test
     public void execute_partialKeyword_noEventFound() {
         String expectedMessage = String.format(MESSAGE_EVENTS_LISTED_OVERVIEW, 0);
-        LocationContainsKeywordsPredicate predicate = preparePredicate("Zoo"); // partial match for "Zoom"
-        FindEventLocationCommand command = new FindEventLocationCommand(predicate);
+        DateContainsKeywordsPredicate predicate = preparePredicate("Zoo"); // partial match for "Zoom"
+        FindEventDateCommand command = new FindEventDateCommand(predicate);
         expectedModel.updateFilteredEventList(predicate);
         assertCommandSuccess(command, model, expectedMessage, CommandResult.showEvents(expectedMessage),
                 expectedModel);
@@ -182,17 +182,17 @@ public class FindEventLocationCommandTest {
 
     @Test
     public void toStringMethod() {
-        LocationContainsKeywordsPredicate predicate =
-                new LocationContainsKeywordsPredicate(Arrays.asList("Zoom"));
-        FindEventLocationCommand command = new FindEventLocationCommand(predicate);
-        String expected = FindEventLocationCommand.class.getCanonicalName() + "{predicate=" + predicate + "}";
+        DateContainsKeywordsPredicate predicate =
+                new DateContainsKeywordsPredicate(Arrays.asList("Zoom"));
+        FindEventDateCommand command = new FindEventDateCommand(predicate);
+        String expected = FindEventDateCommand.class.getCanonicalName() + "{predicate=" + predicate + "}";
         assertEquals(expected, command.toString());
     }
 
     /**
-     * Parses {@code userInput} into a {@code LocationContainsKeywordsPredicate}.
+     * Parses {@code userInput} into a {@code DateContainsKeywordsPredicate}.
      */
-    private LocationContainsKeywordsPredicate preparePredicate(String userInput) {
-        return new LocationContainsKeywordsPredicate(Arrays.asList(userInput.trim().split("\\s+")));
+    private DateContainsKeywordsPredicate preparePredicate(String userInput) {
+        return new DateContainsKeywordsPredicate(Arrays.asList(userInput.trim().split("\\s+")));
     }
 }

@@ -9,17 +9,17 @@ import seedu.address.commons.util.ToStringBuilder;
 /**
  * Tests that a {@code Event}'s {@code Location} matches any of the keywords given.
  */
-public class LocationContainsKeywordsPredicate implements Predicate<Event> {
+public class DateContainsKeywordsPredicate implements Predicate<Event> {
     private final List<String> keywords;
 
-    public LocationContainsKeywordsPredicate(List<String> keywords) {
+    public DateContainsKeywordsPredicate(List<String> keywords) {
         this.keywords = keywords;
     }
 
     @Override
     public boolean test(Event event) {
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(event.getVenue().value, keyword));
+                .anyMatch(keyword -> event.getDate().value.startsWith(keyword));
     }
 
     @Override
@@ -29,13 +29,13 @@ public class LocationContainsKeywordsPredicate implements Predicate<Event> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof LocationContainsKeywordsPredicate)) {
+        if (!(other instanceof DateContainsKeywordsPredicate)) {
             return false;
         }
 
-        LocationContainsKeywordsPredicate otherLocationContainsKeywordsPredicate =
-                (LocationContainsKeywordsPredicate) other;
-        return keywords.equals(otherLocationContainsKeywordsPredicate.keywords);
+        DateContainsKeywordsPredicate otherDateContainsKeywordsPredicate =
+                (DateContainsKeywordsPredicate) other;
+        return keywords.equals(otherDateContainsKeywordsPredicate.keywords);
     }
 
     @Override

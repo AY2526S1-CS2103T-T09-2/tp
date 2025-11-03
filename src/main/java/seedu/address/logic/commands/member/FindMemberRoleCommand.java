@@ -7,20 +7,20 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.model.Model;
-import seedu.address.model.person.YearContainsKeywordsPredicate;
+import seedu.address.model.person.RoleContainsKeywordsPredicate;
 
 /**
  * Finds and lists all persons in address book whose year contains any of the argument keywords.
  * Keyword matching is case-insensitive.
  */
-public class FindMemberYearCommand extends FindCommand {
+public class FindMemberRoleCommand extends FindCommand {
 
-    private final YearContainsKeywordsPredicate predicate;
+    private final RoleContainsKeywordsPredicate predicate;
 
     /**
-     * Creates a FindMemberYearCommand to find the specified {@code YearContainsKeywordsPredicate}
+     * Creates a FindMemberRoleCommand to find the specified {@code RoleContainsKeywordsPredicate}
      */
-    public FindMemberYearCommand(YearContainsKeywordsPredicate predicate) {
+    public FindMemberRoleCommand(RoleContainsKeywordsPredicate predicate) {
         super();
         this.predicate = predicate;
     }
@@ -41,12 +41,12 @@ public class FindMemberYearCommand extends FindCommand {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof FindMemberYearCommand)) {
+        if (!(other instanceof FindMemberRoleCommand)) {
             return false;
         }
 
-        FindMemberYearCommand otherFindMemberYearCommand = (FindMemberYearCommand) other;
-        return predicate.equals(otherFindMemberYearCommand.predicate);
+        FindMemberRoleCommand otherFindMemberRoleCommand = (FindMemberRoleCommand) other;
+        return predicate.equals(otherFindMemberRoleCommand.predicate);
     }
 
     @Override

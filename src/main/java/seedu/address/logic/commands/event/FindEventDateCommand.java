@@ -7,7 +7,7 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.model.Model;
-import seedu.address.model.event.LocationContainsKeywordsPredicate;
+import seedu.address.model.event.DateContainsKeywordsPredicate;
 
 /**
  * Finds and lists all events in the address book whose location contains
@@ -20,17 +20,17 @@ import seedu.address.model.event.LocationContainsKeywordsPredicate;
  * </pre>
  * will list all events with "library" appearing anywhere in their location field.</p>
  */
-public class FindEventLocationCommand extends FindCommand {
+public class FindEventDateCommand extends FindCommand {
 
-    private final LocationContainsKeywordsPredicate predicate;
+    private final DateContainsKeywordsPredicate predicate;
 
     /**
-     * Constructs a {@code FindEventLocationCommand} with the given predicate
+     * Constructs a {@code FindEventDateCommand} with the given predicate
      * to filter the event list based on location keywords.
      *
      * @param predicate the condition used to test each event's location.
      */
-    public FindEventLocationCommand(LocationContainsKeywordsPredicate predicate) {
+    public FindEventDateCommand(DateContainsKeywordsPredicate predicate) {
         super();
         this.predicate = predicate;
     }
@@ -50,12 +50,12 @@ public class FindEventLocationCommand extends FindCommand {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof FindEventLocationCommand)) {
+        if (!(other instanceof FindEventDateCommand)) {
             return false;
         }
 
-        FindEventLocationCommand otherFindEventLocationCommand = (FindEventLocationCommand) other;
-        return predicate.equals(otherFindEventLocationCommand.predicate);
+        FindEventDateCommand otherFindEventDateCommand = (FindEventDateCommand) other;
+        return predicate.equals(otherFindEventDateCommand.predicate);
     }
 
     @Override
