@@ -78,7 +78,8 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "member 1 p/abcd e/amy@example.com", Phone.MESSAGE_CONSTRAINTS_NUMBER);
 
         // empty tag
-        assertParseFailure(parser, "member 1 r/", Tag.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "member 1 r/",
+                "Roles should be alphanumeric and the input must be at most 35 characters long.");
 
         // multiple invalid values, only first invalid captured
         assertParseFailure(parser, "member 1 n/!@# e/invalid@", Name.MESSAGE_CONSTRAINTS);
@@ -167,7 +168,7 @@ public class EditCommandParserTest {
         Index targetIndex = INDEX_THIRD_PERSON;
         String userInput = "member " + targetIndex.getOneBased() + " r/";
 
-        String expectedMessage = Tag.MESSAGE_CONSTRAINTS;
+        String expectedMessage = "Roles should be alphanumeric and the input must be at most 35 characters long.";
         assertParseFailure(parser, userInput, expectedMessage);
     }
 

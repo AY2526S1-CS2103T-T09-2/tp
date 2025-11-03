@@ -57,7 +57,8 @@ public class AddMemberCommandTest {
         ModelStub modelStub = new ModelStubWithPerson(validPerson);
         AddMemberCommand command = new AddMemberCommand(validPerson);
 
-        String expectedMessage = "Duplicate member: other member(s) already use the phone number and email address.";
+        String expectedMessage = "Duplicate member: another member already uses the same "
+                + "phone number and email address.";
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(modelStub));
     }
 

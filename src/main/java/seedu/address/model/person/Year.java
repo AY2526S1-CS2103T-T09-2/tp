@@ -9,8 +9,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Year {
 
-    public static final String MESSAGE_CONSTRAINTS = "Year must not be blank and be only be 1, 2, 3, 4 or 5.";
-    public static final String VALIDATION_REGEX = "[1-5]";
+    public static final String MESSAGE_CONSTRAINTS = "Year must only be 1, 2, 3 or 4.";
+    public static final String VALIDATION_REGEX = "[1-4]";
 
     public final String value;
 

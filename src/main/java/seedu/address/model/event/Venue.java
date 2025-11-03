@@ -11,7 +11,7 @@ public class Venue {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Input for venue should not be blank "
-                    + "and must be at most 75 characters long (excluding leading and trailing spaces).";
+                    + "and must be at most 75 characters long including spaces.";
 
     // First char non-space, then any char sequence
     public static final String VALIDATION_REGEX = "[^\\s].*";

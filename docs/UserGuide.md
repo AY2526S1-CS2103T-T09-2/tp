@@ -63,12 +63,6 @@ title: User Guide
     border-radius: 3px;
     font-family: monospace;
     }
-    .glossary-term {
-    font-weight: 600;
-    color: #c0392b;
-    text-decoration: underline dotted;
-    text-decoration-color: #c0392b;
-  }
 </style>
 
 <div class="quick-links">
@@ -101,7 +95,6 @@ title: User Guide
         <li><a href="#faq">FAQ</a></li>
         <li><a href="#troubleshooting">Troubleshooting</a></li>
         <li><a href="#known-issues">Known Issues</a></li>
-        <li><a href="#glossary">Glossary</a></li>
         <li><a href="#command-summary">Command Summary</a></li>
     </ul>
 </div>
@@ -141,7 +134,6 @@ It is optimised for use via a **Command Line Interface (CLI)** while retaining a
 - [FAQ](#faq)
 - [Troubleshooting](#troubleshooting)
 - [Known Issues](#known-issues)
-- [Glossary](#glossary)
 - [Command Summary](#command-summary)
 
 
@@ -154,7 +146,7 @@ It is optimised for use via a **Command Line Interface (CLI)** while retaining a
 ## About This Guide
 
 
-This guide is for NUS CCA leaders like you who want to manage active members and their attendance for events quickly and easily using a keyboard-first workflow.
+This guide is for NUS CCA leaders like you who want to keep track of members, plan events, and handle routine admin tasks quickly and easily using a keyboard-first workflow.
 
 **What you should know before starting:**
 - You should be comfortable using a command-line interface on Windows, macOS, or Linux.
@@ -275,17 +267,14 @@ Download the latest `.jar` file from [here](https://github.com/AY2526S1-CS2103T-
 
 
 **Notes on command format**
-- *Command words* specify the action we are about to take: `help`, `add`, `list`, `edit`, `find`, `delete`, `clear`, `mark`, `unmark`, `alias`, `unalias`, `find`
-- Some commands require a *type* immediately after the command word: `member` or `event` (e.g., `add member`, `list event`).
-- Words in `UPPER_CASE` are *parameters* you supply. For example, in `add member n/NAME`, `NAME` is the parameter where we can input the actual value `John Doe`.
-- All required *prefixes* must appear exactly once: <code>n/</code>, <code>p/</code>, <code>e/</code>, <code>y/</code> (member) and <code>n/</code>, <code>d/</code>, <code>v/</code> (event).
-- Prefixes are followed parameters 
+- Some commands require a `TYPE` immediately after the command word: `member` or `event` (e.g., `add member`, `list event`).
+- Words in `UPPER_CASE` are parameters you supply. For example, in `add member n/NAME`, `NAME` can be `John Doe`.
 - Items in square brackets are optional.
 - Items with …​ after them can be used multiple times including zero times.
-- The prefixes and parameters must follow the order for all commands except for `mark` and `unmark` commands.
-- Command words and prefixes are <a href="#case-sensitive" class="glossary-term">case-sensitive</a>.
-- <a href="#leading-spaces" class="glossary-term">Leading</a> and <a href="#trailing-spaces" class="glossary-term">trailing spaces</a> around the entire command, around type and around each parameter value are ignored
-- <a href="#consecutive-spaces-between-words" class="glossary-term">Consecutive spaces between words</a> are preserved exactly as typed unless the field forbids them (e.g. phone numbers must not contain any internal spaces) or the field normalises them into a single space when stored (i.e. `Name` fields of member and event enforce this)
+- Parameters must follow the order for all commands except for `mark` and `unmark`.
+- Command words and prefixes are case-sensitive
+- Leading and trailing spaces around the entire command, `TYPE` and each parameter value are ignored
+- Internal spaces are kept as typed unless a field forbids spaces (e.g. phone numbers must not contain internal spaces)
 
 <a id="member-constraints"></a>
 **Member field constraints**
@@ -300,23 +289,23 @@ Download the latest `.jar` file from [here](https://github.com/AY2526S1-CS2103T-
   <tbody>
     <tr>
       <td><strong>NAME (`n/`)</strong></td>
-      <td>- Must not be blank <br>- Letters, spaces, hyphens `-`, apostrophes `’`, slashes `/`, and periods `.` only; digits or other symbols are not allowed.<br> - <a href="#consecutive-spaces-between-words" class="glossary-term">Consecutive spaces between words</a> between words will be allowed for input but normalised to a single space when stored <br> - Input must be at most 35 characters (excluding leading and trailing spaces)</td>
+      <td>- Alphanumeric and spaces only <br> - Extra internal spaces (i.e. more than one) between words will be allowed for input but removed when stored <br> - Input must be at most 35 characters (including spaces)</td>
     </tr>
     <tr>
       <td><strong>PHONE (`p/`)</strong></td>
-      <td>- Must not be blank <br> - Digits only <br> - Exactly 8 digits <br> - Must start with 8 or 9 <br> - Must not contain any spaces in-between</td>
+      <td>- Must not be blank <br> - Digits only <br> - Exactly 8 digits <br> - Must start with 8 or 9 <br> - Must not contain spaces between the digits</td>
     </tr>
     <tr>
       <td><strong>EMAIL (`e/`)</strong></td>
-      <td>- Must not be blank <br> - Must be of the format `local-part@u.nus.edu` <br> - `local-part` should only contain alphanumeric characters and these special characters `+_.-`. It should also not start or end with any of such special characters <br> - The domain must be exactly '@u.nus.edu' <br> - Must not contain any spaces in-between <br> - Input must be at most 35 characters (excluding leading and trailing spaces)</td>
+      <td>- Must not be blank <br> - Must be of the format `local-part@u.nus.edu` <br> - `local-part` should only contain alphanumeric characters and these special characters `+_.-`. It should also not start or end with any of such special characters <br> - The domain must be exactly '@u.nus.edu' <br> - Input must be at most 35 characters (including spaces)</td>
     </tr>
     <tr>
       <td><strong>YEAR (`y/`)</strong></td>
-      <td>- Must not be blank <br> - Must be one of `1`, `2`, `3`, `4` or `5`</td>
+      <td>- Must not be blank <br> - Must be one of `1`, `2`, `3`, or `4`</td>
     </tr>
     <tr>
       <td><strong>ROLE (`r/`)</strong></td>
-      <td>- Must not be blank <br> - Must be alphanumeric and can have spaces <br> - <a href="#consecutive-spaces-between-words" class="glossary-term">Consecutive spaces between words</a> between words will be allowed for input but normalised to a single space when stored <br> - Input must be at most 35 characters (excluding <a href="#leading-spaces" class="glossary-term">leading</a> and <a href="#trailing-spaces" class="glossary-term">trailing spaces</a>, consecutive spaces in between words are normalised)</td>
+      <td>- At least one role is required i.e. must not be blank <br> - Each role is a single alphanumeric word with no internal spaces <br> - To add additional roles, use `r/` prefix again before the additional role <br> - Input must be at most 35 characters (including spaces)</td>
     </tr>
   </tbody>
 </table>
@@ -334,7 +323,7 @@ Download the latest `.jar` file from [here](https://github.com/AY2526S1-CS2103T-
   <tbody>
     <tr>
       <td><strong>NAME (`n/`)</strong></td>
-      <td>- Alphanumeric and spaces only <br> - <a href="#consecutive-spaces-between-words" class="glossary-term">Consecutive spaces between words</a> between words will be allowed for input but normalised to a single space when stored <br> - Input must be at most 35 characters (excluding <a href="#leading-spaces" class="glossary-term">leading</a> and <a href="#trailing-spaces" class="glossary-term">trailing spaces</a>, consecutive spaces in between words are normalised)</td>
+      <td>- Alphanumeric and spaces only <br> - Extra internal spaces will be allowed for input but removed when stored <br> - Input must be at most 35 characters (including spaces)</td>
     </tr>
     <tr>
       <td><strong>DATE_TIME (`d/`)</strong></td>
@@ -342,7 +331,7 @@ Download the latest `.jar` file from [here](https://github.com/AY2526S1-CS2103T-
     </tr>
     <tr>
       <td><strong>VENUE (`v/`)</strong></td>
-      <td>- Must not be blank <br> - Input must be at most 75 characters (excluding leading and trailing spaces)</td>
+      <td>- Must not be blank <br> - Input must be at most 75 characters (including spaces)</td>
     </tr>
   </tbody>
 </table>
@@ -378,9 +367,9 @@ This is an interactive walkthrough that helps you get to know the app. It highli
 You can add a new member or event to your list.
 
 
-**To add member:**
+**To add members:**
 
-Format: `add member n/NAME p/PHONE e/EMAIL y/YEAR r/ROLE`
+Format: `add member n/NAME p/PHONE e/EMAIL y/YEAR r/ROLE…`
 
 - You cannot add duplicate members. See FAQ for notes on what constitutes a [duplicate member](#duplicate-members)
 - For field constraints: see [Member field constraints](#member-constraints)
@@ -390,10 +379,10 @@ Examples:
 - `add member n/John Doe p/98765432 e/johndoe@u.nus.edu y/1 r/President`
 → Adds John Doe with phone 98765432, email johndoe@u.nus.edu, year 1, role President.
 
-- `add member n/Jane Tan p/91234567 e/janetan@u.nus.edu y/3 r/Treasurer`
-→ Adds Jane Tan with phone 91234567, email janetan@u.nus.edu, year 3, role Treasurer.
+- `add member n/Jane Tan p/91234567 e/janetan@u.nus.edu y/3 r/Treasurer r/Logistics`
+→ Adds Jane Tan with phone 91234567, email janetan@u.nus.edu, year 3, roles Treasurer and Logistics.
 
-**To add event:**
+**To add events:**
 
 - Format: `add event n/NAME d/DATE_TIME v/VENUE`
 
@@ -404,7 +393,8 @@ Examples:
 - `add event n/Welcome Tea d/2025-09-01T18:00 v/COM1-01-02`
 → Creates “Welcome Tea” on 2025-09-01 18:00 at COM1-01-02.
 
-<div markdown="span" class="alert alert-warning">⚠️ <strong>Caution:</strong> The time part of ISO format should follow 24-hour time format.</div>
+<div markdown="span" class="alert alert-success">✅ <strong>Tip:</strong> Since roles are a single alphanumeric word and cannot contain spaces, consider using CamelCase (e.g. <code>r/TechLead</code>).</div>
+<div markdown="span" class="alert alert-warning">⚠️ <strong>Caution:</strong> All required prefixes must appear exactly once: <code>n/</code>, <code>p/</code>, <code>e/</code>, <code>y/</code> (member) and <code>n/</code>, <code>d/</code>, <code>v/</code> (event). Only <code>r/</code> may repeat, and at least one <code>r/</code> is required.</div>
 
 
 [Back to table of contents](#table-of-contents)
@@ -537,7 +527,7 @@ Format: `delete TYPE INDEX`
 
 - `TYPE` is either `member` or `event`.
 - `INDEX` refers to the index number shown in the current list and must be a positive number.
-- Deleting an upcoming event reverses any attendance previously marked for it, while deleting a past event leaves attendance counts unchanged so that historical records remain intact for the active members. ComClubConnect detects automatically if the event is past or upcoming using your system date and time.
+- Deleting an upcoming event reverses any attendance previously marked for it, while deleting a past event leaves attendance counts unchanged so that historical records remain intact for the active members.
 
 Examples:
 - `delete member 2`
@@ -684,7 +674,6 @@ Examples:
 <div markdown="span" class="alert alert-success">✅ <strong>Tip:</strong> To replace an existing alias for a command word, simply <code>alias NEW_ALIAS_WORD COMMAND_WORD</code> instead of <code>unalias COMMAND_WORD</code> followed by <code>alias NEW_ALIAS_WORD COMMAND_WORD</code>.</div>
 <div markdown="span" class="alert alert-info"> ℹ️ <strong>Note:</strong> The keyword <code>all</code> is <strong>not a command word</strong>, so it is <strong>not case-sensitive</strong>. Both <code>unalias all</code> and <code>unalias All</code> will work the same way.</div>
 
-
 [Back to table of contents](#table-of-contents)
 
 
@@ -757,7 +746,7 @@ Data is saved as a JSON file at `[JAR file location]/data/addressbook.json`.
 
 <a id="duplicate-members"></a>
 - Are duplicate members allowed?
-- No. Two members with the same phone number or NUS email are considered duplicates. Email matching is <a href="#case-insensitive" class="glossary-term">case-insensitive</a>. Note that members with same name are not considered to be duplicates.
+- No. Two members with the same phone number or NUS email are considered duplicates. Email matching is case-insensitive. Members with same name is not considered to be duplicates.
 <br> Examples:
     - Members with same phone number `91234567` and `91234567` → duplicate
     - Members with same email `alex@u.nus.edu` and `Alex@u.nus.edu` → duplicate
@@ -766,7 +755,7 @@ Data is saved as a JSON file at `[JAR file location]/data/addressbook.json`.
 
 <a id="duplicate-events"></a>
 - Are duplicate events allowed?
-- No. Two events with the same venue and the same date-time are considered duplicates. Venue matching is <a href="#case-insensitive" class="glossary-term">case-insensitive</a> and ignores <a href="#consecutive-spaces-between-words" class="glossary-term">consecutive spaces between words</a>.
+- No. Two events with the same name and the same date are considered duplicates. Name matching is case-insensitive and ignores extra (i.e. more than one) internal spaces.
 <br> Examples:
     - `Welcome  TeA` on `2025-09-01T18:00` and `welcome tea` on `2025-09-01T18:00` → duplicate
 
@@ -876,41 +865,6 @@ Problem: “Could not save data due to insufficient permissions …”
 1. When using multiple screens, if you move the application to a secondary screen, and later switch to only the primary screen, the GUI may open off-screen. Remedy: delete `preferences.json` in the app folder and start again.
 2. If you minimize the Help window and run `help` again, the original Help window remains minimized and no new Help window appears. Remedy: restore the minimized Help window.
 
-
-[Back to table of contents](#table-of-contents)
-
-
---------------------------------------------------------------------------------------------------------------------
-
-
-
-
-## Glossary
-
-<a id="consecutive-spaces-between-words"></a>
-- **Consecutive spaces between words**  
-  Two or more spaces typed in a row between words. A normal single space is **not** considered consecutive spaces.
-  E.g. `John  Richard Doe` has 2 consecutive spaces between `John` and `Richard`
-
-<a id="leading-spaces"></a>
-- **Leading spaces**
-  These are spaces at the very beginning, before any text. You can think of it like the “empty” space you type before your real text starts
-  E.g. In `  hello`, there are two leading spaces before the world `hello`
-
-<a id="trailing-spaces"></a>
-- **Trailing spaces**
-  These are spaces at the very end, after any text. You can think of it like the “empty” space you type after your real text starts
-  E.g. In `hello  `, there are two trailing spaces after the word `hello`
-
-<a id="case-sensitive"></a>
-- **Case sensitive**
-  This means uppercase and lowercase letters are treated as different characters.
-  In other words, `A` is not the same as `a`.
-
-<a id="case-insensitive"></a>
-- **Case insensitive**
-  This means uppercase and lowercase letters are treated as same characters.
-  In other words, `A` is the same as `a`.
 
 
 [Back to table of contents](#table-of-contents)

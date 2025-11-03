@@ -35,10 +35,16 @@ final class MemberDuplicateMessageUtil {
             return Optional.empty();
         }
 
+        String phoneReason = "phone number";
+        String emailReason = "email address";
+        String reason;
         if (phoneClash && emailClash) {
-            return Optional.of("Duplicate member: other member(s) already use the phone number and email address.");
+            reason = phoneReason + " and " + emailReason;
+        } else if (phoneClash) {
+            reason = phoneReason;
+        } else {
+            reason = emailReason;
         }
-        String reason = phoneClash ? "phone number" : "email address";
         return Optional.of("Duplicate member: another member already uses the same " + reason + ".");
     }
 }

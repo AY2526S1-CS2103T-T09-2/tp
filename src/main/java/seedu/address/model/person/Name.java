@@ -10,8 +10,9 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Name {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Member name must not be blank and only have letters, spaces, hyphens (-), apostrophes (’), slashes (/), "
-                    + "and periods (.). Input must be 1-35 characters long after trimming.";
+            "Member names can include letters, spaces, hyphens (-), apostrophes (’), slashes (/), and periods (.),"
+                    + " Name input should not be blank"
+                    + " and the input must be at most 35 characters long.";
 
     /*
      * The first character of the address must not be a whitespace,

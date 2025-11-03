@@ -44,7 +44,8 @@ public class AddMemberCommandIntegrationTest {
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
         Person personInList = model.getAddressBook().getPersonList().get(0);
-        String expectedMessage = "Duplicate member: other member(s) already use the phone number and email address.";
+        String expectedMessage = "Duplicate member: another member already uses the same "
+                + "phone number and email address.";
         assertCommandFailure(new AddMemberCommand(personInList), model, expectedMessage);
     }
 
