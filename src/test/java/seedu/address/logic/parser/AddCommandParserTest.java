@@ -75,7 +75,8 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_compulsoryFieldMissing_failure() {
-        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
+        String expectedMessage = String.format(
+                MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE_MEMBER);
 
         // Missing name prefix
         assertParseFailure(parser, "member " + VALID_NAME_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
